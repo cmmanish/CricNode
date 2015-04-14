@@ -43,6 +43,8 @@ app.get('/about', function (req, res) {
 
 
 // launch app ======================================================================
-app.listen(port, function (req, res) {
-    console.log('https://127.0.0.1:' + port + '/');
-});
+//app.listen(port, function (req, res) {
+//    console.log('https://127.0.0.1:' + port + '/');
+//});
+
+app.set('port', process.env.PORT || port);
