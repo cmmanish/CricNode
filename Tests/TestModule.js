@@ -1,5 +1,5 @@
-var scorecard = require('./scorecard');
-var teamProfile = require('./teamProfile');
+var scorecard = require('./../rest/scorecard');
+var teamProfile = require('./../rest/teamProfile');
 
 var JSONObject = scorecard.fetchScorecard("186884");
 

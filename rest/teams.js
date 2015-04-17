@@ -1,6 +1,6 @@
 var request = require('sync-request');
 
-var fetchTeams = function () {
+exports.fetchNews = function () {
 
     var teamUrl = 'http://query.yahooapis.com/v1/public/yql?q=' +
         'select%20*%20from%20cricket.teams' +
@@ -10,4 +10,3 @@ var fetchTeams = function () {
     var JSONoutput = JSON.parse(res.body.toString());
     return JSONoutput;
 }
-module.exports.fetchTeams = fetchTeams;
