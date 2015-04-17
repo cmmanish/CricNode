@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title> Cric Node </title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
+    <style>
+        body {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="jumbotron text-center">
+        <h2> Welcome to Cricket Scorecard System</h2>
+
+        <div class="form-group">
+            <label>Upcoming Series</label>
+        </div>
+        <% if (seriesList.length) { %>
+        <% for(var i = 0; i < seriesList.length; i++) { %>
+            </br>
+           <span class="label label-success"> <%= seriesList[i].SeriesId %></span>
+           <span class="label label-success"><%= seriesList[i].SeriesName %></span>
+            <% } %>
+        <% } %>
+
+    </div>
+</div>
+</div>
+</body>
+</html>

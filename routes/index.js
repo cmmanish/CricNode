@@ -5,6 +5,7 @@ var router = express.Router();
 var httpScorecard = require('../rest/scorecard.js')
 var httpTeam = require('../rest/teams.js')
 var httpTeamProfile = require('../rest/teamProfile.js')
+var httpUpcomingSeries = require('../rest/upcomingSeries.js')
 var JSONObject
 var JSONArray = [];
 
@@ -81,7 +82,7 @@ exports.getScorecard = function (req, res) {
 exports.getNews = function (req, res) {
 
     var JSONObject = httpScorecard.fetchNews(req.params.region);
-        console.log(JSONObject);
+    console.log(JSONObject);
     if (JSONObject.query.results) {
         console.log(newItemList);
         var newItemList = JSONObject.query.results.Scorecard.item;
@@ -96,6 +97,19 @@ exports.getNews = function (req, res) {
     res.render('index.ejs', {
         author: author1,
         title: title1
+    });
+
+}
+
+exports.getUpcomingSeries = function (req, res) {
+
+    var JSONObject = httpUpcomingSeries.getUpcomingSeries();
+
+    if (JSONObject.query.results) {
+        var seriesList = JSONObject.query.results.Series;
+    }
+    res.render('upcomingSeries.ejs', {
+        seriesList: seriesList
     });
 
 }
