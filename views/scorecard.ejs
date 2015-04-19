@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title> Cric Node </title>
+    <title> Cric Stats </title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <!-- load bootstrap css -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
@@ -15,33 +15,50 @@
 <body>
 <div class="container">
     <div class="jumbotron text-center">
-        <h2> Welcome to Cricket Scorecard System</h2>
-
         <div class="form-group">
-            <label>MatchId</label>
-            <span class="label label-success"><%= mid %></span>
-        </div>
-
-        <div class="form-group">
-            <label>Series Name</label>
+            <label>Welcome to </label>
             <span class="label label-success"><%= series_name %></span>
-        </div>
 
-        <div class="form-group">
-            <label>Match Name</label>
-            <span class="label label-success"><%= mn %></span>
-        </div>
-
-        <div class="form-group">
-            <label>Stadium Name</label>
+            <label>from </label>
             <span class="label label-success"><%= stadium %></span>
-        </div>
 
-        <div class="form-group">
-            <label>Man of the Match</label>
-            <span class="label label-success"><%= mom %></span>
-        </div>
+            <label> the</label>
+            <span class="label label-success"><%= mn %></span>
 
+            <label>between</label>
+            <span class="label label-success"> <%= teamList[0].fn %></span>
+            <label> and </label>
+            <span class="label label-success"><%= teamList[1].fn %></span>
+        </div>
+        <label>Man of the Match</label>
+        <span class="label label-success"><%= mom %></span>
+
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Batsman</th>
+                <th>Mode of Dismissal</th>
+                <th>Runs</th>
+                <th>Balls</th>
+            </tr>
+            </thead>
+        </table>
+        <div>
+            <% for (var i = 0; i < teamA.length; i++) { %>
+            </br>
+
+            <tbody>
+            <table class="table table-bordered">
+                <tr id="tr_id_1">
+                    <td><%= playerList[i] %></td>
+                    <td><%= teamA[i].c %></td>
+                    <td><%= teamA[i].r %></td>
+                    <td><%= teamA[i].b %></td>
+                </tr>
+            </tbody>
+            </table>
+            <% } %>
+        </div>
     </div>
 </div>
 </div>
