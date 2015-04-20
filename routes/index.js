@@ -1,12 +1,13 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
-//var Scorecard = mongoose.model('Scorecard');
 var httpScorecard = require('../rest/scorecard.js')
 var httpPlayer = require('../rest/player.js')
 var httpTeam = require('../rest/teams.js')
 var httpTeamProfile = require('../rest/teamProfile.js')
 var httpUpcomingSeries = require('../rest/upcomingSeries.js')
+var httpPastGames = require('../rest/pastGames.js')
+
 var JSONObject
 var JSONArray = [];
 
@@ -15,7 +16,6 @@ exports.getAllTeams = function (req, res) {
 
     JSONObject = httpTeam.fetchNews();
     JSONArray = JSONObject.query.results.Team;
-
     if (JSONObject.results) {
         var mid = JSONObject.results.Scorecard.mid;
         //var series_name = JSONObject.query.results.Scorecard.series.series_name;
@@ -24,7 +24,6 @@ exports.getAllTeams = function (req, res) {
         //if (JSONObject.query.results.Scorecard.result.mom)
         //    var mom = JSONObject.query.results.Scorecard.result.mom.fn;
     }
-
     res.render('team.ejs', {
         mid: mid,
         series_name: series_name,
@@ -32,14 +31,12 @@ exports.getAllTeams = function (req, res) {
         stadium: stadium,
         mom: mom
     });
-
 }
 
 // get a user with ID of 186885
 exports.getTeamProfile = function (req, res) {
 
     var JSONObject = httpTeamProfile.fetchTeamProfile(req.params.id);
-
     if (JSONObject.query.results) {
         var mid = JSONObject.query.results.Scorecard.mid;
         var series_name = JSONObject.query.results.Scorecard.series.series_name;
@@ -60,7 +57,6 @@ exports.getTeamProfile = function (req, res) {
 exports.getScorecard = function (req, res) {
 
     var JSONObject = httpScorecard.fetchScorecard(req.params.id);
-
     if (JSONObject.query.results) {
         if (JSONObject.query.results.Scorecard.result)
             if (JSONObject.query.results.Scorecard.result.mom)
@@ -75,21 +71,21 @@ exports.getScorecard = function (req, res) {
         var teamB = JSONObject.query.results.Scorecard.past_ings[0].d.a.t;
 
     }
-    playerList = []
-    for (var zz = 0; zz < teamA.length; zz++) {
-        var id = teamA[zz].i;
-        var playerJSON = httpPlayer.fetchPlayer(id);
-        var firstName = playerJSON.query.results.Player.PersonalDetails.FirstName;
-        var lastName = playerJSON.query.results.Player.PersonalDetails.LastName;
-        var name = firstName + ' ' + lastName
-        playerList.push(name);
-    }
+    //playerList = []
+    //for (var zz = 0; zz < teamA.length; zz++) {
+    //    var id = teamA[zz].i;
+    //    var playerJSON = httpPlayer.fetchPlayer(id);
+    //    var firstName = playerJSON.query.results.Player.PersonalDetails.FirstName;
+    //    var lastName = playerJSON.query.results.Player.PersonalDetails.LastName;
+    //    var name = firstName + ' ' + lastName
+    //    playerList.push(name);
+    //}
 
     res.render('scorecard.ejs', {
         mid: mid,
         series_name: series_name,
         mn: mn,
-        playerList: playerList,
+        //playerList: playerList,
         stadium: stadium,
         teamList: teamList,
         teamA: teamA,
@@ -105,10 +101,6 @@ exports.getNews = function (req, res) {
     if (JSONObject.query.results) {
         console.log(newItemList);
         var newItemList = JSONObject.query.results.Scorecard.item;
-        //for (var i = 0, len = newItemList.length; i < len; i++) {
-        //    console.log("JSON: ", newItemList[i].author);
-        //    console.log("JSON: ", newItemList[i].title);
-        //}
         author1 = newItemList[0].author
         title1 = newItemList[0].title
         console.log(newItemList);
@@ -117,18 +109,26 @@ exports.getNews = function (req, res) {
         author: author1,
         title: title1
     });
-
 }
 
 exports.getUpcomingSeries = function (req, res) {
 
     var JSONObject = httpUpcomingSeries.getUpcomingSeries();
-
     if (JSONObject.query.results) {
         var seriesList = JSONObject.query.results.Series;
     }
     res.render('upcomingSeries.ejs', {
         seriesList: seriesList
     });
+}
 
+exports.getPastGames = function (req, res) {
+
+    var JSONObject = httpPastGames.getPastGames()
+    if (JSONObject.query.results) {
+        var matchList = JSONObject.query.results.Match;
+    }
+    res.render('index.ejs', {
+        matchList: matchList
+    });
 }

@@ -15,10 +15,11 @@
 <body>
 <div class="container">
     <div class="jumbotron text-center">
+        <div align="left"><label> <a href="/">Home Page </a></label></div>
+
         <div class="form-group">
             <label>Welcome to </label>
             <span class="label label-success"><%= series_name %></span>
-
             <label>from </label>
             <span class="label label-success"><%= stadium %></span>
 
@@ -32,8 +33,7 @@
         </div>
         <label>Man of the Match</label>
         <span class="label label-success"><%= mom %></span>
-
-        <table class="table table-bordered">
+        <table width="200" class="table table-bordered">
             <thead>
             <tr>
                 <th>Batsman</th>
@@ -45,17 +45,13 @@
         </table>
         <div>
             <% for (var i = 0; i < teamA.length; i++) { %>
-            </br>
-
-            <tbody>
-            <table class="table table-bordered">
+            <table width="200" class="table table-bordered">
                 <tr id="tr_id_1">
-                    <td><%= playerList[i] %></td>
-                    <td><%= teamA[i].c %></td>
-                    <td><%= teamA[i].r %></td>
-                    <td><%= teamA[i].b %></td>
+                    <td align=left size=4><%= teamA[i].i %></td>
+                    <td align=left><%= teamA[i].c %></td>
+                    <td align=left><%= teamA[i].r %></td>
+                    <td align=left><%= teamA[i].b %></td>
                 </tr>
-            </tbody>
             </table>
             <% } %>
         </div>

@@ -20,17 +20,27 @@
 
         <form class="fa">
             <a class="fa " href="/get/upcomingSeries">Upcoming Series </a>
-        </form></br>
-            <form class="fa">
-                Match ID =
-                <a class="fa " href="/get/match/186885">186885</a>
-                <a class="fa " href="/get/match/186884">186884</a>
-                <a class="fa " href="/get/match/186883">186883</a>
-                <a class="fa " href="/get/match/186882">186882</a>
-                <a class="fa " href="/get/match/186881">186881</a>
-            </form>
-            </br>
-
+        </form>
+        </br>
+        <form class="fa">
+            Past Matches
+            <div>
+                <table width="200" class="table table-bordered">
+                    <tr id="tr_id_1">
+                        <% for (var i = 0; i < matchList.length; i++) { %>
+                        <td align=left size=4>
+                            <a href = "/get/match/<%= matchList[i].Team[0].matchid %>" class="label label-success">
+                                <%= matchList[i].Team[0].Team %>
+                                vs.
+                                <%= matchList[i].Team[1].Team %>
+                            </a>
+                        </td>
+                    </tr>
+                    <% } %>
+                </table>
+            </div>
+            <a class="fa " href="/get/match/190886">190886</a>
+        </form>
     </div>
 
 </div>

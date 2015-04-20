@@ -20,14 +20,17 @@
         <div class="form-group">
             <label>Upcoming Series</label>
         </div>
-        <% if (seriesList.length) { %>
-        <% for(var i = 0; i < seriesList.length; i++) { %>
-            </br>
-           <span class="label label-success"> <%= seriesList[i].SeriesId %></span>
-           <span class="label label-success"><%= seriesList[i].SeriesName %></span>
-            <% } %>
-        <% } %>
-
+        <table id="table1">
+            <% for(var i = 0; i < seriesList.length; i++) { %>
+            <tr id="tr_1">
+                <td>
+                    <button class= "btn btn-success">
+                        <%= seriesList[i].SeriesName %>
+                    </button>
+                </td>
+                <% } %>
+            </tr>
+        </table>
     </div>
 </div>
 </div>
