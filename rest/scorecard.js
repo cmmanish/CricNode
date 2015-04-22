@@ -8,8 +8,6 @@ exports.fetchScorecard = function (matchid) {
 
     var res = request('GET', scorecardUrl);
 
-    //console.log(JSONoutput)
     var JSONoutput = JSON.parse(res.body.toString());
-    console.log(JSONoutput)
     return JSONoutput;
 }
