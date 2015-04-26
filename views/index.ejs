@@ -17,7 +17,6 @@
 <div class="container">
     <div class="jumbotron text-center">
         <h2> Welcome to Cricket Match Information System</h2>
-
         <form class="fa">
             <a class="fa " href="/get/upcomingSeries">Upcoming Series </a>
         </form>
@@ -29,7 +28,7 @@
                     <tr id="tr_id_1">
                         <% for (var i = 0; i < matchList.length; i++) { %>
                         <td align=left size=4>
-                            <a href = "/get/match/<%= matchList[i].Team[0].matchid %>" class="label label-success">
+                            <a href = "/get/match/<%= matchList[i].matchid %>" class="label label-success">
                                 <%= matchList[i].Team[0].Team %>
                                 vs.
                                 <%= matchList[i].Team[1].Team %>
